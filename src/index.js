@@ -24,6 +24,10 @@ function getBTC () {
             myNotification.onclick = () => {
                 console.log('Notification is clicked.');
             };
+<<<<<<< HEAD
+=======
+            console.log(myNotification.onclick);
+>>>>>>> master
         }
     });
 }

@@ -17,6 +17,7 @@ npm start
 
 ## Build && Deployment
 Use a packager called [electron-packager](https://github.com/electron/electron-packager) to create the OS-specific builds of the Electron app. 
+<<<<<<< HEAD
 You can replace the icon in the `asset/icon/{mac|win|png}/` directory with your own [icon](http://www.iconarchive.com/). And then, 
 ```
 # Build Mac App
@@ -25,6 +26,16 @@ electron run packager-mac
 electron run packager-win
 # Build Linux App
 electron run packager-linux
+=======
+You can replace the icon in the `asset/icon/{mac|win|png}/` directory with your own icon. And then, 
+```
+# Build Mac App
+electron packager-mac
+# Build win App
+electron packager-win
+# Build Linux App
+electron packager-linux
+>>>>>>> master
 ```
 Or, you can read the both of following and then customize your app: 
 - [Electron App Deployment Tutorial](https://coursetro.com/posts/code/124/Electron-App-Deployment-Tutorial)
