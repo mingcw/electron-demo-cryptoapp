@@ -1,7 +1,7 @@
 # electron-demo-cryptoapp
 
 ## Introduce
-A demo for learning [Electron](https://electronjs.org/). It is referenced from [Creating Desktop Apps with Electron Tutorial](https://coursetro.com/courses/22/Creating-Desktop-Apps-with-Electron-Tutorial).
+A demo for learning [Electron](https://electronjs.org/). It is referenced from [Creating Desktop Apps with Electron Tutorial](https://coursetro.com/courses/22/Creating-Desktop-Apps-with-Electron-Tutorial) and [Build an Electron App in Under 60 Minutes](https://www.youtube.com/watch?v=kN1Czs0m1SU).
 
 ## Installation
 ```

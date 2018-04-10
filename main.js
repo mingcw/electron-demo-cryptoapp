@@ -1,10 +1,49 @@
-// require('electron-reload')(__dirname);
+// Set node enviroment
+process.env.NODE_ENV = 'development'; // 'development' or 'production'
+
+// Auto reload electron app when codes change, in non-production enviroment.
+if (process.env.NODE_ENV !== 'production') {
+    require('electron-reload')(__dirname);
+}
 
 const {app, BrowserWindow, Menu, shell, ipcMain} = require('electron');
 const path = require('path');
 const url = require('url');
 
-let mainWindow;
+let mainWindow; // instance of main window
+let mainMenu = [
+    {
+        label: 'Menu',
+        submenu: [
+            { 
+                label: 'Adjust Notification Value'
+            },
+            { 
+                label: 'CoinMarketCap',
+                click () {
+                    shell.openExternal('http://coinmarketcap.com');
+                },
+                accelerator: 'CmdOrCtrl+Shift+C'
+            },
+            {
+                type: 'separator'
+            },
+            {
+                role: 'reload'
+            },
+            { 
+                label: 'Exit',
+                click () {
+                    app.quit();
+                },
+                accelerator: 'CmdOrCtrl+Q'
+            }
+        ]
+    },
+    {
+        label: 'Info'
+    }
+];;   // application menu template of main window
 
 function createWindow () {
     // Create the broswer window
@@ -21,45 +60,20 @@ function createWindow () {
     }));
 
     // Integrating a Custom Menu
-    var menu  = Menu.buildFromTemplate([
-            {
-                label: 'Menu',
-                submenu: [
-                    { 
-                        label: 'Adjust Notification Value'
-                    },
-                    { 
-                        label: 'CoinMarketCap',
-                        click () {
-                            shell.openExternal('http://coinmarketcap.com');
-                        },
-                        accelerator: 'CmdOrCtrl+Shift+C'
-                    },
-                    {
-                        type: 'separator'
-                    },
-                    { 
-                        label: 'Exit',
-                        click () {
-                            app.quit();
-                        }
-                    }
-                ]
-            },
-            {
-                label: 'Info'
-            }
-        ]);
+    let menu  = Menu.buildFromTemplate(mainMenu);
     Menu.setApplicationMenu(menu);
 
-    // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    // Open Developer Tools if no production
+    if (process.env.NODE_ENV !== 'production') {
+        mainWindow.webContents.openDevTools();
+    }
 
     // Emmit when the window is closed.
     mainWindow.on('closed', () => {
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
+        app.quit();
         mainWindow = null;
     });
 }
@@ -81,3 +95,21 @@ app.on('activate', () => {
 ipcMain.on('update-notify-value', (event, arg) => {
     mainWindow.webContents.send('targetPriceVal', arg);
 });
+
+// Add Developer Tools if no production
+if (process.env.NODE_ENV !== 'production') {
+    mainMenu.push(
+        {
+            label: 'Developer Tools',
+            submenu:[
+                {
+                    label: 'Toggle Developer Tools',
+                    click (menuItem, broswerWindow, event) {
+                        broswerWindow.webContents.toggleDevTools();
+                    },
+                    accelerator: 'CmdOrCtrl+Shift+I'
+                }
+            ]
+        }
+    );
+}
