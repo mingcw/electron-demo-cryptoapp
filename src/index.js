@@ -24,10 +24,6 @@ function getBTC () {
             myNotification.onclick = () => {
                 console.log('Notification is clicked.');
             };
-<<<<<<< HEAD
-=======
-            console.log(myNotification.onclick);
->>>>>>> master
         }
     });
 }
@@ -46,7 +42,7 @@ notifyBtn.addEventListener('click', e => {
     const modalPath = path.join('file://', __dirname, 'add.html');
     modalWindow.loadURL(modalPath);
     modalWindow.on('close', () => {
-        win = null;
+        modalWindow = null;
     });
     modalWindow.show();
 });
