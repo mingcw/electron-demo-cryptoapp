@@ -23,9 +23,6 @@ electron run packager-win
 # Build Linux App
 electron run packager-linux
 ```
-Or, you can read the both of following and then customize your app: 
+Or, you can read the both of following blogs and then customize your app: 
 - [Electron App Deployment Tutorial](https://coursetro.com/posts/code/124/Electron-App-Deployment-Tutorial)
 - [Electron packager tutorial](https://www.christianengvall.se/electron-packager-tutorial/)
-
-## Conclusion
-Updating...
